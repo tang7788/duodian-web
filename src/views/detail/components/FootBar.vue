@@ -1,28 +1,25 @@
 <template>
-  <div>
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
-    <div class="footer">
-      <nav>
-        <router-link
-          v-for="(item, index) in tabs"
-          :key="index"
-          :to="item.path"
-          active-class="active"
-        >
-          <img :src="item.icon" alt="" class="icon">
-          <img :src="item.icon_select" alt="" class="icon_select">
-          <span>{{item.text}}</span>
-        </router-link>
-      </nav>
-    </div>
+  <div class="footer">
+    <nav>
+      <router-link
+        v-for="(item, index) in tabs"
+        :key="index"
+        :to="item.path"
+        active-class="active"
+      >
+        <img :src="item.icon" alt="" class="icon">
+        <img :src="item.icon_select" alt="" class="icon_select">
+        <span>{{item.text}}</span>
+      </router-link>
+      <a href="javascript:;" class="add">加入购物车</a>
+      <a href="javascript:;" class="buy">立即购买</a>
+    </nav>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'main-index',
+  name: 'foot-bar',
   data () {
     return {
       tabs: [
@@ -37,18 +34,6 @@ export default {
           text: '分类',
           icon: require('@/assets/images/kind.png'),
           icon_select: require('@/assets/images/kind-select.png')
-        },
-        {
-          path: '/car',
-          text: '购物车',
-          icon: require('@/assets/images/car.png'),
-          icon_select: require('@/assets/images/car-select.png')
-        },
-        {
-          path: '/my',
-          text: '我的',
-          icon: require('@/assets/images/my.png'),
-          icon_select: require('@/assets/images/my-select.png')
         }
       ]
     }
@@ -66,9 +51,9 @@ export default {
   background: #fff;
   nav {
     width: 100%;
+    height: 100px;
+    box-sizing: border-box;
     @include flex(row, center, center);
-    padding-top: 14px;
-    padding-bottom: 6px;
     a {
       flex: 1;
       flex-direction: column;
@@ -97,6 +82,26 @@ export default {
           color: #fe3113;
         }
       }
+    }
+    .add {
+      width: 210px;
+      height: 100%;
+      background: #FFBA2F;
+      font-size: 32px;
+      font-weight: 500;
+      text-align: center;
+      color: #fff;
+      line-height: 100px;
+    }
+    .buy {
+      width: 210px;
+      height: 100%;
+      background: #FE3212;
+      font-size: 32px;
+      font-weight: 500;
+      text-align: center;
+      color: #fff;
+      line-height: 100px;
     }
   }
 }

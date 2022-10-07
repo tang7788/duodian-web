@@ -1,8 +1,18 @@
 export default {
   mounted () {
-    window.addEventListener('scroll', this.scroll, false)
+    if (this.$options.scrollBottom) {
+      window.addEventListener('scroll', this.scroll, false)
+    }
   },
   destroyed () {
+    window.removeEventListener('scroll', this.scroll, false)
+  },
+  actived () {
+    if (this.$options.scrollBottom) {
+      window.addEventListener('scroll', this.scroll, false)
+    }
+  },
+  deactived () {
     window.removeEventListener('scroll', this.scroll, false)
   },
   methods: {

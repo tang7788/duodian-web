@@ -42,7 +42,7 @@ export default {
       fetchProductParams: {
         page: 1,
         page_size: 10,
-        classid: 1
+        category_id: 1
       }
     }
   },
@@ -71,23 +71,22 @@ export default {
   methods: {
     initHomeData () {
       this.$api.home.base().then(res => {
-        this.banner = res.data.data.banner
-        this.nav = res.data.data.nav
-        this.hot_nav = res.data.data.hot_nav
+        this.banner = res.data.banner
+        this.nav = res.data.nav
+        this.hot_nav = res.data.hot_nav
         console.log(res)
       })
     },
     async fetchProductList () {
       const res = await this.$api.product.list(this.fetchProductParams)
       if (this.fetchProductParams.page === 1) {
-        this.product = res.data.data
+        this.product = res.data
       } else {
-        this.product = this.product.concat(res.data.data)
+        this.product = this.product.concat(res.data)
       }
-      console.log(res)
     },
     navchange (index, item) {
-      this.fetchProductParams.classid = item.id
+      this.fetchProductParams.category_id = item.id
       this.fetchProductParams.page = 1
       const top = this.$refs.conts.offsetTop
       const scrollTop = document.querySelector('html').scrollTop

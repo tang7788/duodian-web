@@ -1,8 +1,10 @@
 <template>
   <div class="lists">
-    <dl
+    <router-link
       v-for="(item, index) in lists"
       :key="index"
+      :to="`/detail/${item.id}`"
+      tag="dl"
     >
       <dt>
         <img :src="item.img" alt="">
@@ -17,13 +19,13 @@
           </div>
         </div>
         <div class="bottom">
-          <p><span class="money">￥</span>{{item.price}}<span>￥{{item.price}}</span></p>
+          <p><span class="money">￥</span>{{item.price | number}}<span>￥{{item.price | number}}</span></p>
           <div class="car">
             <img src="../../assets/images/xxcar.png" alt="">
           </div>
         </div>
       </dd>
-    </dl>
+    </router-link>
   </div>
 </template>
 
@@ -48,6 +50,9 @@ export default {
         unit = sizes[i]
       }
       return value + unit
+    },
+    number: function (value) {
+      return (value / 100).toFixed(2)
     }
   }
 }
@@ -61,7 +66,7 @@ export default {
     padding: 33px 30px 30px 30px;
     box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     dt {
       @include wh(240px, 240px);
       padding-right: 30px;
@@ -70,6 +75,7 @@ export default {
       }
     }
     dd {
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -77,6 +83,12 @@ export default {
         h5 {
           font-size: 32px;
           color: #111;
+          -webkit-line-clamp: 2;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: block;
         }
         p {
           font-size: 24px;

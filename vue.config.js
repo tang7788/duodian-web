@@ -21,6 +21,11 @@ module.exports = {
       }
     }
   },
+  configureWebpack: {
+    externals: {
+      AMap: 'AMap'
+    }
+  },
   // 在开发环境下将 API 请求代理到 API 服务器  跨域代理
   devServer: {
     proxy: {

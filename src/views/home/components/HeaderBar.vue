@@ -1,19 +1,23 @@
 <template>
   <div class="header">
-    <a href="javascript:;">
+    <router-link to="/address">
       <i class="iconfont icon-shouhuodizhi"></i>
-      <span>送至：北京八维研修学院</span>
+      <span>送至：{{address.formattedAddress}}</span>
       <i class="iconfont icon-xiangyoujiantou"></i>
-    </a>
-    <a href="javascript:;" class="search">
+    </router-link>
+    <router-link to="/search" class="search">
       <i class="iconfont icon-sousuo"></i>
-    </a>
+    </router-link>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  name: 'header-bar'
+  name: 'header-bar',
+  computed: {
+    ...mapState('user', ['address'])
+  }
 }
 </script>
 
@@ -24,11 +28,17 @@ export default {
   padding-left: 16px;
   box-sizing: border-box;
   a {
+    display: block;
+    max-width: 50%;
     font-size: 24px;
     color: #999;
+    display: flex;
     span {
       font-size: 24px;
       color: #999;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
   .search {
